@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.h1{color:red;font-size:35px;
+        font-family:黑体}
+.p{ background:gray;color:white;
+       font-size:25px;font-family:宋体}
+.body {width:100%; hight:100%; background: url(timg1.jpg)}
+     
+a.a1:link {color: white; background:gray;color:white;
+       font-size:25px;font-family:宋体}/* 未访问的链接 */
+a.a1:visited {color: white;background:gray;color:white;
+       font-size:25px;font-family:宋体} /* 已访问的链接 */
+a.a1:hover {color: yellow;background:gray;color:white;
+       font-size:25px;font-family:宋体} /* 鼠标在链接上 */
+a.a1:active {color: white;background:gray;color:white;
+       font-size:25px;font-family:宋体} /* 激活链接 */
+       
+       
+#footer{
+	height:60px; clear:both; background:#cf9;
+}
+#header{
+	height:50px;margin-bottom:5px;
+}
+#middle{
+	text-align:center; hight:450px; background-color:rgba(255,255,255,0.5);width:85%;align:center;
+}
