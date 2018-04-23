@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+  "-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+  "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+    <field name="commodity.name">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>请输入商品名称!</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">2</param>
+            <param name="maxLength">50</param>
+            <message>商品名称应该在${minLength} - ${maxLength}位之间!</message>
+        </field-validator>
+    </field>
+    <!-- 	<field name="commodity.num">
+	    <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>请输入商品数量!</message>
+        </field-validator>
+		<field-validator type="int">
+			<param name="min">1</param>
+			<message>商品数量必须大于0！</message>
+		</field-validator>
+	</field>
+	<field name="commodity.price">
+	    <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>请输入商品价格!</message>
+        </field-validator>
+		<field-validator type="int">
+			<param name="min">0.1</param>
+			<message>商品价格必须大于0.1！</message>
+		</field-validator>
+	</field> -->
+
+
+    <field name="commodity.comdescribe">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>请输入商品描述!</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">5</param>
+            <param name="maxLength">255</param>
+            <message>商品描述应该在${minLength} - ${maxLength}位之间!</message>
+        </field-validator>
+     </field>
+
+</validators>

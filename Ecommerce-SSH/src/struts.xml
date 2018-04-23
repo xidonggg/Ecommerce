@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+ <struts>
+    <!--   替换对象工厂里原来的Action，将Action交由Spring管理 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="images" value="d:\"/>
+	
+  <package name="default" extends="struts-default"  namespace="/">
+  
+     <action  name="userAction_register" class="com.action.UserAction" method="register"> 
+         <result name="success">/userView/registerSuccess.jsp</result> 
+         <result name="error">/userView/register.jsp</result>
+         <result name="input">/userView/register.jsp</result>
+     </action> 
+     <action  name="userAction_login" class="com.action.UserAction" method="login">
+         <result name="success">/CommodityView/jump.jsp</result>
+         <result name="error">/userView/login.jsp</result>
+         <result name="jump" type="redirectAction">
+         	<param name="actionName">adminAction_login</param>
+         	<param name="admin">${admin }</param></result>
+     </action> 
+     
+     <action  name="userAction_logout" class="com.action.UserAction" method="logout">
+         <result name="success" type="redirectAction">commodityAction_showAll</result>
+     </action>
+     <action  name="userAction_beforelogin" class="com.action.UserAction" method="beforelogin">
+         <result name="success">/userView/login.jsp</result>
+         <result name="error">/userView/error.jsp</result>
+     </action> 
+     <action  name="userAction_userHome" class="com.action.UserAction" method="userHome">
+         <result name="success">/userView/loginSuccess.jsp</result>
+         <result name="error">/userView/login.jsp</result>
+     </action> 
+     <action  name="userAction_update" class="com.action.UserAction" method="update">
+         <result name="success">/userView/loginSuccess.jsp</result>
+         <result name="error">/userView/login.jsp</result>
+         <result name="input">/userView/updateUser.jsp</result>
+     </action>         
+       <action  name="userAction_beforeupdate" class="com.action.UserAction" method="beforeupdate">
+         <result name="success">/userView/updateUser.jsp</result>
+     </action>   
+       <action  name="userAction_beforeregister" class="com.action.UserAction" method="beforeregister">
+         <result name="success">/userView/register.jsp</result>
+     </action>  
+     
+     <action  name="shoppingAction_showCart" class="com.action.ShoppingAction" method="showCart">
+         <result name="success">/userView/Cart.jsp</result>
+         <result name="error">/userView/login.jsp</result>
+     </action> 
+	<action name="shoppingAction_addCart" class="com.action.ShoppingAction" method="addCart">
+	<!--<result name="success" type="redirectAction">
+			<param name="actionName">viewDetails</param>
+			<param name="commid">${commodity.id}</param>
+			<param name="msg">${msg}</param>
+		</result> -->
+		 <result name="success">/CommodityView/detialCommodity.jsp </result>
+		<result name="error">/userView/login.jsp</result>
+	</action>
+	<action name="shoppingAction_deleteItem" class="com.action.ShoppingAction" method="deleteItem">
+		<result name="success">/userView/Cart.jsp </result>
+		<result name="error">/userView/login.jsp</result>
+	</action>
+
+
+
+	<action name="orderAction_beforePlaceOrder" class="com.action.OrderAction" method="beforePlaceOrder">
+		<result name="success">/userView/showOrder.jsp </result>
+		<result name="error">/userView/error.jsp</result>
+		<result name="error2">/userView/Cart.jsp</result>
+	</action>	
+	<action name="orderAction_placeOrder" class="com.action.OrderAction" method="placeOrder">
+		<result name="success">/userView/showFinalOrder.jsp </result>
+		<result name="error">/userView/login.jsp</result>
+	</action>	
+	<action name="orderAction_beforeTuristPlaceOrder" class="com.action.OrderAction" method="beforeTuristPlaceOrder">
+		<result name="success">/userView/showturistOrder.jsp </result>
+		<result name="error">/userView/error.jsp</result>
+	</action>	
+	<action name="orderAction_turistplaceOrder" class="com.action.OrderAction" method="turistplaceOrder">
+		<result name="success">/userView/showFinalturistOrder.jsp </result>
+		<result name="error">/userView/error.jsp</result>
+
+	</action>	
+	<action name="orderAction_showUserOrder" class="com.action.OrderAction" method="showUserOrder">
+		<result name="success">/userView/showUserOrder.jsp </result>
+	</action>	
+	
+	<action name="orderAction_showNeedFinishOrder" class="com.action.OrderAction" method="showNeedFinishOrder">
+		<result name="success">/userView/showNeedFinishOrder.jsp </result>
+	</action>	
+	<action name="orderAction_findCommodities" class="com.action.OrderAction" method="findCommodities">
+		<result name="success">/userView/showNeedFinishOrder.jsp </result>
+	</action>
+	
+	<action name="orderAction_updateOrderStateSell" class="com.action.OrderAction" method="updateOrderStateSell">
+		<result name="success" type="redirectAction">orderAction_showUserOrder</result>
+	</action>	
+	
+	<action name="orderAction_updateStateSeller" class="com.action.OrderAction" method="updateStateSeller">
+		<result name="success" type="redirectAction">adminAction_showAllOrder</result>
+	</action>	
+	<action name="orderAction_updateOrderSell" class="com.action.OrderAction" method="updateOrderSell">
+		<result name="success">/userView/showNeedFinishOrder.jsp </result>
+	</action>	
+	
+	
+	 <action  name="commodityAction_beforeadd" class="com.action.CommodityAction" method="beforeaddCommodity"> 
+         <result name="success">/CommodityView/addCommodity.jsp</result> 
+         <result name="error">/userView/error.jsp</result>
+         <!-- <result name="input">/CommodityView/register.jsp</result>  -->        
+     </action> 
+     <action  name="commodityAction_add" class="com.action.CommodityAction" method="addCommodity"> 
+         <result name="success">/CommodityView/addCommoditySuccess.jsp</result> 
+         <result name="error">/userView/error.jsp</result>
+         <result name="input">/CommodityView/addCommodity.jsp</result>
+         <!-- 定义文件上传拦截器 -->
+         <interceptor-ref name="fileUpload">
+         	<!-- 设置文件上传大小 -->
+         	<param name="maxinumSize">409600</param>
+         	</interceptor-ref>
+         	<interceptor-ref name="defaultStack"></interceptor-ref>
+         	
+         <!-- <result name="input">/CommodityView/register.jsp</result>  -->        
+     </action> 
+     <action  name="commodityAction_showAll" class="com.action.CommodityAction" method="showAll"> 
+         <result name="success">/CommodityView/showCommodities.jsp</result>   
+         <result name="error">/userView/error.jsp</result>  
+     </action> 
+     <action name="viewDetails" class="com.action.CommodityAction" method="viewDetails">
+     	<result name="success">/CommodityView/detialCommodity.jsp</result>
+     	
+     </action>
+     <action  name="commodityAction_leaveMessage" class="com.action.CommodityAction" method="leaveMessage">
+         <result name="success">/CommodityView/detialCommodity.jsp</result>
+         <result name="error">/userView/login.jsp</result>
+     </action> 
+     <action  name="commodityAction_findCommodities" class="com.action.CommodityAction" method="findCommodities">
+         <result name="success">/CommodityView/showCommodities.jsp</result>
+  
+     </action> 
+     <action  name="commodityAction_showMyCommodity" class="com.action.CommodityAction" method="showMyCommodity">
+         <result name="success">/userView/showMyCommodity.jsp</result>
+  
+     </action> 
+     <action  name="commodityAction_updateCommodityState" class="com.action.CommodityAction" method="updateCommodityState">
+         <result name="success" type="redirectAction">commodityAction_showMyCommodity</result>
+  
+     </action> 
+     
+
+
+     <action  name="adminAction_addAdmin" class="com.action.AdminAction" method="addAdmin"> 
+         <result name="success">/AdminView/addAdminSuccess.jsp</result> 
+         <result name="error">/userView/error.jsp</result>
+         <result name="input">/AdminView/addAdmin.jsp</result>       
+     </action> 
+     <action  name="adminAction_updateAdmin" class="com.action.AdminAction" method="updateAdmin"> 
+         <result name="success">/AdminView/loginAdminSuccess.jsp</result> 
+         <result name="error">/userView/error.jsp</result>   
+         <result name="input">/AdminView/updateAdmin.jsp</result>   
+     </action>
+     <action  name="adminAction_login" class="com.action.AdminAction" method="login"> 
+         <result name="success">/AdminView/loginAdminSuccess.jsp</result> 
+         <result name="error">/userView/login.jsp</result>
+         <!--<result name="input">/AdminView/addAdmin.jsp</result>   -->          
+     </action> 
+     
+  	 <action  name="adminAction_findUsers" class="com.action.AdminAction" method="findUsers"> 
+         <result name="success">/AdminView/showAllUser.jsp</result>         
+     </action>
+  	 <action  name="adminAction_findCommodities" class="com.action.AdminAction" method="findCommodities"> 
+         <result name="success">/AdminView/showAllCommodity.jsp</result>         
+     </action>
+  	 <action  name="adminAction_showAllUser" class="com.action.AdminAction" method="showAllUser"> 
+         <result name="success">/AdminView/showAllUser.jsp</result>         
+     </action> 
+  	 <action  name="adminAction_beforeupdateUser" class="com.action.AdminAction" method="beforeupdateUser"> 
+         <result name="success">/AdminView/updateUser.jsp</result>         
+     </action> 
+   	 <action  name="adminAction_updateUser" class="com.action.AdminAction" method="updateUser"> 
+         <result name="success" type="redirectAction">adminAction_showAllUser</result>         
+     </action> 
+   	 <action  name="adminAction_deleteUser" class="com.action.AdminAction" method="deleteUser"> 
+         <result name="success" type="redirectAction">adminAction_showAllUser</result>         
+     </action> 
+  	 <action  name="adminAction_beforeupdateAdmin" class="com.action.AdminAction" method="beforeupdateAdmin"> 
+         <result name="success">/AdminView/updateAdmin.jsp</result>         
+     </action> 
+  	 <action  name="adminAction_beforeaddAdmin" class="com.action.AdminAction" method="beforeaddAdmin"> 
+         <result name="success">/AdminView/addAdmin.jsp</result>         
+     </action>         
+    <action  name="adminAction_showAllCommodity" class="com.action.AdminAction" method="showAllCommodity"> 
+         <result name="success">/AdminView/showAllCommodity.jsp</result>         
+     </action> 
+    <action  name="adminAction_showAllOrder" class="com.action.AdminAction" method="showAllOrder"> 
+         <result name="success">/AdminView/showAllOrder.jsp</result>         
+     </action> 
+    <action  name="adminAction_findOrders" class="com.action.AdminAction" method="findOrders"> 
+         <result name="success">/AdminView/showAllOrder.jsp</result>         
+     </action> 
+	<action  name="adminAction_findOrderItems" class="com.action.AdminAction" method="findOrderItems"> 
+         <result name="success">/AdminView/showOrderItem.jsp</result>         
+     </action>
+	<action  name="adminAction_findCommodity" class="com.action.AdminAction" method="findCommodity"> 
+         <result name="success">/AdminView/showCommodity.jsp</result>         
+     </action>
+	<action  name="adminAction_passCommodity" class="com.action.AdminAction" method="passCommodity"> 
+         <result name="success">/AdminView/showCommodity.jsp</result>         
+     </action>
+  	 <action  name="adminAction_adminHome" class="com.action.AdminAction" method="adminHome"> 
+         <result name="success">/AdminView/loginAdminSuccess.jsp</result>         
+     </action> 
+      <action  name="adminAction_logout" class="com.action.AdminAction" method="logout">
+         <result name="success" type="redirectAction">commodityAction_showAll</result>
+     </action> 
+      <action  name="adminAction_showAllLeaveMessage" class="com.action.AdminAction" method="showAllLeaveMessage">
+         <result name="success">/AdminView/showAllLeaveMessage.jsp</result>
+     </action> 
+      <action  name="adminAction_deleteMessage" class="com.action.AdminAction" method="deleteMessage">
+         <result name="success" type="redirectAction">adminAction_showAllLeaveMessage</result>
+     </action> 
+       <action  name="adminAction_findleaveMessages" class="com.action.AdminAction" method="findleaveMessages">
+         <result name="success">/AdminView/showAllLeaveMessage.jsp</result>
+     </action> 
+       <action  name="adminAction_updateOrder" class="com.action.AdminAction" method="updateOrder">
+         <result name="success" type="redirectAction">adminAction_findOrderItems</result>
+     </action> 
+      
+  </package>
+</struts>
+

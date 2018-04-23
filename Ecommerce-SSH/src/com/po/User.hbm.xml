@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+    <class name="com.po.User" table="[user]" >
+        <id name="id" type="java.lang.Integer">
+            <column name="id" not-null="true"/>
+            <generator class="native"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" length="50" not-null="true" />
+        </property>
+        <property name="phonenumber" type="java.lang.String">
+            <column name="phonenumber" length="20" not-null="true" />
+        </property>
+        <property name="address" type="java.lang.String">
+            <column name="address" length="255" not-null="true" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="50" not-null="true" />
+        </property>
+        <property name="birthday" type="java.util.Date">
+            <column name="birthday" />
+        </property>
+        <property name="accScore" type="java.lang.Integer">
+            <column name="accScore" not-null="true" />
+        </property>
+        <set name="commoditylist" inverse="true" cascade="all" lazy="false">
+        	<key column="commodity_user"/>
+        	<one-to-many class="com.po.Commodity"/>
+        </set>
+        <set name="cartItemlist" inverse="true" cascade="all" lazy="false">
+        	<key column="cartItem_user"/>
+        	<one-to-many class="com.po.CartItem"/>
+        </set>
+        <set name="orderlist" inverse="true" cascade="all" lazy="false">
+        	<key column="order_user"/>
+        	<one-to-many class="com.po.Order"/>
+        </set>
+        <set name="leaveMessagelist" inverse="true" cascade="all" lazy="false">
+        	<key column="leaveMessage_user"/>
+        	<one-to-many class="com.po.LeaveMessage"/>
+        </set>
+    </class>
+</hibernate-mapping>
